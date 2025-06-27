@@ -7,7 +7,6 @@
     "dev": "nodemon index.js",
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-   
   },
   "keywords": [
     "bank",
@@ -20,8 +19,8 @@
     "dotenv": "^15.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.2",
+    "mongodb": "^6.17.0",
     "mongoose": "^6.2.0"
-   
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

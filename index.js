@@ -5,18 +5,17 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(express.static('public'));
 
-app.use(express.static('public'))
+app.set("view engine", "ejs");
 
-app.use(require('./router/index'))
+app.use(require('./router/index'));
 
-app.set("view engine", "ejs")
+const connectDB = require('./database/db.js');
+connectDB();
 
-const database = require('./database/db');
-database();
-
-app.listen(PORT, ()=> {
-    console.log(`Server is running on http://localhost:${PORT}`);
-})
+app.listen(PORT, () => {
+    console.log(`🚀 Server is running on http://localhost:${PORT}`);
+});

@@ -1,13 +1,19 @@
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+dotenv.config();
 
-const conn = () => {
-    main()
-        .then(() => console.log("mongoose connnected......."))
-        .catch(err => console.log(err));
+mongoose.set('strictQuery', false);
 
-    async function main() {
-        await mongoose.connect('mongodb://127.0.0.1:27017/banking');
+const connectDB = async () => {
+    try {
+        await mongoose.connect(process.env.MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        console.log("✅ MongoDB connected successfully...........");
+    } catch (err) {
+        console.error("❌ MongoDB connection error:", err.message);
     }
-}
+};
 
-module.exports = conn;
+module.exports = connectDB;
